@@ -17,6 +17,9 @@ export function Footer() {
           </ul>
         </nav>
       </Container>
+      <Container className="pb-8 text-xs text-neutral-500">
+        <p>Affiliate disclosure: some links on this site are affiliate links. We may earn a commission on qualifying purchases at no extra cost to you.</p>
+      </Container>
     </footer>
   );
 }

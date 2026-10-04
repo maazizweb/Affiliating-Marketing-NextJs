@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { AffiliateButton } from "@/components/product/AffiliateButton";
+import { ProductPrice } from "@/components/product/ProductPrice";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductInformation, ProductInformationHeader } from "@/components/product/ProductInformation";
 import { ProductJsonLd } from "@/components/product/ProductJsonLd";
-import { ProductPurchase } from "@/components/product/ProductPurchase";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { getCurrency, getProductBySlug, getVariations } from "@/lib/woocommerce";
+import { getCurrency, getProductBySlug } from "@/lib/woocommerce";
 import { stripHtml } from "@/utils/format";
-import { toVariationOptions, variationAttributes } from "@/utils/product";
-import { maxPurchasable } from "@/utils/stock";
 
 // Static + ISR: regenerated at most every 5 minutes, or on demand via the /api/revalidate webhook.
 export const revalidate = 300;
@@ -41,10 +40,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
   const product = await getProductBySlug((await params).slug);
   if (!product) notFound();
 
-  const [currency, variations] = await Promise.all([
-    getCurrency(),
-    product.type === "variable" ? getVariations(product.id) : [],
-  ]);
+  const currency = await getCurrency();
   const primaryCategory = product.categories[0];
 
   return (
@@ -62,18 +58,20 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
         <ProductGallery images={product.images} name={product.name} />
         <div className="space-y-6">
           <ProductInformationHeader product={product} />
-          {product.type === "simple" || product.type === "variable" ? (
-            <ProductPurchase
-              productId={product.id}
+          <div className="space-y-4">
+            <ProductPrice
+              className="text-2xl"
+              price={product.price}
+              regularPrice={product.regular_price}
+              onSale={product.on_sale}
               currency={currency.code}
-              price={{ price: product.price, regularPrice: product.regular_price, onSale: product.on_sale }}
-              stock={{ status: product.stock_status, purchasable: product.purchasable, maxQuantity: maxPurchasable(product) }}
-              attributes={variationAttributes(product)}
-              variations={toVariationOptions(variations, product)}
             />
-          ) : (
-            <p className="text-sm text-neutral-600">This product type can&apos;t be purchased from the storefront.</p>
-          )}
+            <AffiliateButton product={product} className="w-full px-6 py-3 text-base sm:w-auto" />
+            <p className="text-xs text-neutral-500">
+              We may earn a commission if you buy through this link, at no extra cost to you. Price and availability may
+              change on the seller&apos;s site.
+            </p>
+          </div>
         </div>
       </div>
       <div className="mt-12 max-w-3xl">

@@ -61,6 +61,7 @@ export interface WCProduct {
   attributes: WCProductAttribute[];
   variations: number[];
   external_url?: string;
+  button_text?: string;
 }
 
 export interface WCVariationAttribute {

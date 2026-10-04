@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { WCProduct } from "@/types/woocommerce";
+import { AffiliateButton } from "./AffiliateButton";
 import { ProductPrice } from "./ProductPrice";
 import { ProductRating } from "./ProductRating";
 
@@ -53,6 +54,8 @@ export function ProductCard({
         currency={currency}
         prefix={product.type === "variable" ? "From" : undefined}
       />
+      {/* relative z-10 lifts the button above the card's stretched link so it stays separately clickable */}
+      <AffiliateButton product={product} className="relative z-10 mt-3 w-full" />
     </article>
   );
 }
