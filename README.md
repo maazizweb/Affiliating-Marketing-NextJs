@@ -89,3 +89,20 @@ Client Components are limited to: gallery, variation/quantity selectors, add-to-
 ## Scripts
 
 `npm run dev` · `npm run build` · `npm start` · `npm run lint`
+
+
+
+<!-- General Notes for the developer -->
+
+<!-- https://api.wordpress.org/secret-key/1.1/salt/ -->
+
+<!-- WP config -->
+<!-- define('AUTH_KEY',         'k[.Fn=ZUmc-U%_n% %w8&{GeQ_`qZqfd_]uDK%_vO_+R-dd#SN!x`Kg3W|Q%OkZ6');
+define('SECURE_AUTH_KEY',  'P8;.{o5Bv-1&P5+-@ >+cFE9a/2nHjf63V(jlZ%r+@]8BFy=/AVJjiQ@/R1A8G%5');
+define('LOGGED_IN_KEY',    'o%f|cN-Edk9kaAE#8BEY~Bs&8?(:^c)1G8.eIVmD!reQ0R*OYasd>Gu]}yfD#6>z');
+define('NONCE_KEY',        '|WqP1,VyBS(bI=Mw/GGL`)^BW:F;$-OB^g 4Q4.7B*YxBM+/A]s,cX|: Ji_ov:<');
+define('AUTH_SALT',        '?>PqD`qe*M/G|l]%C(1?-Q(I*NZ(d=/f$NTqWO;-&Ly*}1V$;[yA)p-V`9l~l}-3');
+define('SECURE_AUTH_SALT', 'DX`TnWbm.jr nd>Eg<oa9#(xiH :e,Y7$#7n|4/)z-iqyN-6k+n7qeUZ(UC*- ~L');
+define('LOGGED_IN_SALT',   '28`,pX>K~3qU+8tOV`u78qJR+=V@X?Mw(*HD||,KMMmzGz-h` y{GLM(D}WzG2`e');
+define('NONCE_SALT',       'zoI6jo9sdB@.>y5LSCgLf2Ydg[hJDT!Rr-4>A<:)!|oIR}80TD1KFll7KF+Cr/MG');
+define('JWT_AUTH_SECRET_KEY', '4HAWH@5}#w9fT%({}V{x_Y@3M@hdYIwN_%n[Up@&,T}GM|=&p6@URQmGyIfUQ*VU'); -->
